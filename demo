@@ -1,0 +1,74 @@
+// Solidity program 
+// to store 
+// Student Details
+// By Etiosa Odia
+//SPDX-License-Identifier: MIT
+
+
+pragma solidity 0.8.4;
+  
+// Creating a Smart Contract
+contract StructDemo{
+  
+   // Structure of Student
+   struct Student{
+       
+       // State variables
+       int Matno;
+       string name;
+       string department;
+       string year;
+   }
+   
+   Student []studs;
+  
+   // Function to add 
+   // Student details
+   function addStudent(
+     int Matno, string memory name, 
+     string memory department, 
+     string memory year
+   ) public{
+       Student memory e
+         =Student(Matno,
+                   name,
+                   department,
+                   year);
+       studs.push(e);
+   }
+  
+  // Function to get
+  // details of Student
+   function getStudent(
+     int Matno
+   ) public view returns(
+     string memory, 
+     string memory, 
+     string memory){
+       uint i;
+       for(i=0;i<studs.length;i++)
+       {
+           Student memory e
+             =studs[i];
+           
+           // Looks for a matching 
+           // Student id
+           if(e.Matno==Matno)
+           {
+                  return(e.name,
+                      e.department,
+                      e.year);
+           }
+       }
+       
+     // If provided Student 
+     // id is not present
+     // it returns Not 
+     // Found
+     return("Not Found",
+            "Not Found",
+            "Not Found");
+   }
+}
+
+
